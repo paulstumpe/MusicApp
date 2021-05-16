@@ -1,5 +1,9 @@
 import { Router } from 'express';
 import { getAllUsers, addOneUser, updateOneUser, deleteOneUser } from './Users';
+import { searchArtist } from './Artist';
+
+
+const baseRouter = Router();
 
 
 // User-route
@@ -10,7 +14,15 @@ userRouter.put('/update', updateOneUser);
 userRouter.delete('/delete/:id', deleteOneUser);
 
 
-// Export the base-router
-const baseRouter = Router();
+// User-route
+const artistRouter = Router();
+artistRouter.get('/:searchString', searchArtist)
+
+
+// Register Routers
 baseRouter.use('/users', userRouter);
+baseRouter.use('/artist', userRouter);
+
+
+// Export the base-router
 export default baseRouter;
