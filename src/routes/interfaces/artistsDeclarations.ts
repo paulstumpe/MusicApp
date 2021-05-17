@@ -25,6 +25,7 @@ export interface PossibleArtists {
 export interface SelectedArtist extends ArtistObject{
     amgArtistId:number,
     primaryGenreName: string,
+    activeYears: number,
     albums: AlbumResult[]
 }
 export interface SearchArtistResponse {

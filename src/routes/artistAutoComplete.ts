@@ -51,15 +51,11 @@ export async function artistAutoComplete(req: Request, res: Response) {
     for (let possibleArtistsKey in possibleArtists) {
         searchOptions.push(possibleArtists[possibleArtistsKey])
     }
-    searchOptions = searchOptions.sort((possibleArtistA,possibleArtistB)=> {
-        if (possibleArtistA.searchCount > possibleArtistB.searchCount) {
-            return 1;
-        } else if (possibleArtistA.searchCount > possibleArtistB.searchCount) {
-            return -1;
-        }
-        return 0;
+    searchOptions.sort((possibleArtistA,possibleArtistB)=> {
+      return possibleArtistB.searchCount-possibleArtistA.searchCount
     })
-    debugger;
+
+    // debugger;
     return res.status(OK)
         .end(JSON.stringify(searchOptions));
 }

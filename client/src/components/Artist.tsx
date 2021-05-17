@@ -27,7 +27,7 @@ export default function Artist({artist}:{artist:SelectedArtist}) {
                        {artist.artistName}
                    </Typography>
                    <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                       {artist.albums.length} releases over x years
+                       {artist.albums.length} releases over {artist.activeYears} years
                    </Typography>
                        {/*<Grid container spacing={2} justify="center">*/}
                        {/*    <Grid item>*/}

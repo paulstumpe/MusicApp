@@ -45,7 +45,7 @@ import CardHeader from "@material-ui/core/CardHeader";
 import { red } from '@material-ui/core/colors';
 import {AlbumResult, ArtistObject} from "../../../src/routes/interfaces/artistsDeclarations";
 import axios from "axios";
-import {Container, Grid} from "@material-ui/core";
+import {Container, Grid, Link} from "@material-ui/core";
 import moment from "moment";
 import Paper from "@material-ui/core/Paper";
 
@@ -87,6 +87,7 @@ const useStyles = makeStyles((theme: Theme)=>
 
 export default function Album({album}:{album:AlbumResult}) {
     const classes = useStyles();
+    const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
 
 
     return (
@@ -162,12 +163,9 @@ export default function Album({album}:{album:AlbumResult}) {
                 </CardActionArea>
                 <CardActions style={{                        backgroundColor:'#e4e7f5',
                 }}>
-                    <Button size="small" color="primary">
-                        Share
-                    </Button>
-                    <Button size="small" color="primary">
-                        Learn More
-                    </Button>
+                    <Link href={album.collectionViewUrl}  rel="noreferrer" variant='body2'>
+                        Learn more
+                    </Link>
                 </CardActions>
             </Card>
         </Grid>

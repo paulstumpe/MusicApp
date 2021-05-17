@@ -11,7 +11,7 @@ import {
 } from "../../../src/routes/interfaces/artistsDeclarations";
 
 
-export default function NavigationHeader({getArtist}:any){
+export default function ArtistSearch({getArtist, tooltip}:any){
     let [searchString, setSearchString]= useState('');
     let [autoCompleteArray, setAutocompleteArray] = useState<AutoCompleteArtist[]>([])
     let [loading, setLoading] = useState(false)
@@ -40,22 +40,15 @@ let setSelectedArtist=(value:string)=>{
 
 console.log(autoCompleteArray)
     return (
-    <AppBar position="relative">
-        <Toolbar>
-            <Typography variant="h6" color="inherit" noWrap>
-                Album layout
-            </Typography>
 
-            <div style={{ width: 300 }}>
-                {/*<Autocomplete style={{ backgroundColor:'white' }}*/}
-                {/*    id="free-solo-demo"*/}
-                {/*    freeSolo*/}
-                {/*    options={[{title:'s'}].map((option) => option.title)}*/}
-                {/*    renderInput={(params) => (*/}
-                {/*        <TextField {...params} label="freeSolo" margin="normal" variant="outlined" />*/}
-                {/*    )}*/}
-                {/*/>*/}
-                <Autocomplete style={{ backgroundColor:'white' }}
+            <div style={{ width: 300, marginLeft:20, padding:20,}} >
+            <div style={{ width: 300, marginLeft:20,
+                paddingRight:8,
+                paddingLeft:8,
+                paddingBottom:8,
+                backgroundColor:"white"}} >
+                <Autocomplete
+                    // style={{ backgroundColor:'white' }}
                     freeSolo
                     id="free-solo-2-demo"
                               // open={true}
@@ -72,9 +65,9 @@ console.log(autoCompleteArray)
                               filterOptions={(options, state) => options}
 
                     renderInput={(params) => (
-                        <TextField
+                        <TextField style={{ backgroundColor:'white' }}
                             {...params}
-                            label="Search input"
+                            label={tooltip}
                             margin="normal"
                             variant="outlined"
                             InputProps={{ ...params.InputProps, type: 'search' }}
@@ -86,7 +79,7 @@ console.log(autoCompleteArray)
                     )}
                 />
             </div>
+            </div>
 
-        </Toolbar>
-    </AppBar>)
+)
 }

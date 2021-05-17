@@ -8,7 +8,7 @@ import {
     SelectedArtist, AlbumResult, SearchArtistResponse, ArtistResult
 } from "./interfaces/artistsDeclarations";
 import {isString} from "util";
-
+import moment from "moment/moment";
 interface artistResult {
     wrapperType: string,
     amgArtistId: number,
@@ -98,8 +98,23 @@ export async function searchArtist(req: Request, res: Response) {
             }
         })
         if(selectedArtist){
+            albums.sort((a:AlbumResult, b:AlbumResult)=>{
+                // @ts-ignore
+                return  new Date(b.releaseDate) - new Date(a.releaseDate)
+                }
+            )
             // @ts-ignore
             selectedArtist.albums =albums;
+            // @ts-ignore
+            if(selectedArtist.albums.length){
+                // @ts-ignore
+                let recent = selectedArtist.albums[0].releaseDate
+                // @ts-ignore
+                let last = selectedArtist.albums[selectedArtist.albums.length-1].releaseDate
+
+                // @ts-ignore
+                selectedArtist.activeYears = moment(recent).diff(moment(last), 'years')
+            }
         }
     }
     console.log(selectedArtist)
